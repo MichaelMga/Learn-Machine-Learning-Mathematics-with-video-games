@@ -20,7 +20,7 @@
 
                     <p>
   
-                      Pars de zero en mathématiques (tant que tu sais compter de 0 à 10, ça ira) </br> 
+                      Pars de zéro en mathématiques (tant que tu sais compter de 0 à 10, ça ira) </br> 
                       et maîtrise l'ensemble des mathématiques requis pour faire du machine learning, en créant de simples jeux vidéo en Python.
 
                       <br> <br>
@@ -69,7 +69,7 @@
         return;
     }
     
-    fetch(`${serverAdress}?mailValue= ${mailValue.value}`).then(
+    fetch(`${serverAdress}?mailValue=${mailValue.value}`).then(
     
     res => {
        alert("Merci !");
