@@ -1,0 +1,22 @@
+{
+  "name": "learn-machine-learning-mathematics-with-video-games",
+  "version": "1.0.0",
+  "description": "Website, in Typescript, NodeJS, Postgresql",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelMga/Learn-Machine-Learning-Mathematics-with-video-games.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelMga/Learn-Machine-Learning-Mathematics-with-video-games/issues"
+  },
+  "homepage": "https://github.com/MichaelMga/Learn-Machine-Learning-Mathematics-with-video-games#readme",
+  "dependencies": {
+    "pg": "^8.11.3"
+  }
+}
