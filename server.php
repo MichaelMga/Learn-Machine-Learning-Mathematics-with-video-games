@@ -1,40 +1,37 @@
-<?php 
+<?php
 
-  echo "whatsup";
-
-  define('DB_SERVER', 'localhost:3306');
-  define('DB_USERNAME', 'root');
-  define('DB_PASSWORD', '');
-  define('DB_DATABASE', 'mlmaths');
-  $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+define('DB_SERVER', 'localhost:3306');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'mlmaths');
+$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 
-  // Check for connection errors
-  if (!$db) {
+if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
-  }
+}
 
-  if (isset($_GET['mailValue'])) {
-    // Retrieve the value of the mailValue parameter
+if (isset($_GET['mailValue'])) {
     $mailValue = $_GET['mailValue'];
 
-    // SQL query to insert a user
-   $sql = "INSERT INTO users (mail) VALUES ('$mailValue')";
+    if (!filter_var($mailValue, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format";
+        mysqli_close($db);
+        exit(); 
+    }
 
-   // Execute the query
-   if (mysqli_query($db, $sql)) {
-    echo "User inserted successfully.";
-  } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($db);
-  }
+    $stmt = $db->prepare("INSERT INTO users (mail) VALUES (?)");
+    $stmt->bind_param("s", $mailValue);
 
+    if ($stmt->execute()) {
+        echo "User inserted successfully.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 
-  }
+    $stmt->close();
+}
 
-  
+mysqli_close($db);
 
-  // Close the database connection
-  mysqli_close($db);
-
-
- ?>
+?>
