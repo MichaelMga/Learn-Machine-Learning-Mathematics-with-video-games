@@ -14,15 +14,24 @@
     die("Connection failed: " . mysqli_connect_error());
   }
 
-  // SQL query to insert a user
-  $sql = "INSERT INTO users (mail) VALUES ('test@gmail.com')";
+  if (isset($_GET['mailValue'])) {
+    // Retrieve the value of the mailValue parameter
+    $mailValue = $_GET['mailValue'];
 
-  // Execute the query
-  if (mysqli_query($db, $sql)) {
+    // SQL query to insert a user
+   $sql = "INSERT INTO users (mail) VALUES ('$mailValue')";
+
+   // Execute the query
+   if (mysqli_query($db, $sql)) {
     echo "User inserted successfully.";
   } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($db);
   }
+
+
+  }
+
+  
 
   // Close the database connection
   mysqli_close($db);
